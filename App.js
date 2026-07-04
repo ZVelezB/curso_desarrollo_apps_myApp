@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, Pressable, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, Button, Pressable, TouchableOpacity } from 'react-native';
 import { Link } from 'expo-router';
 
 export default function App() {
