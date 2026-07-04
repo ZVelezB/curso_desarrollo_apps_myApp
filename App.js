@@ -1,64 +1,55 @@
+import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, Button, Pressable, TouchableOpacity } from 'react-native';
+import { Text, View, Image, Button, Pressable, TouchableOpacity, TextInput} from 'react-native';
+import { styles } from './styles.js';
 import { Link } from 'expo-router';
 
 export default function App() {
+  const [isDarkMode, setIsDarkMode] = useState(true);
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.titleText}>
+    <View style={isDarkMode ? styles.containerOscuro : styles.containerClaro}>
+      <Text style={isDarkMode ? styles.titleTextOscuro : styles.titleTextClaro}>
         React Native
       </Text>
       <View style={{ backgroundColor: 'red', width: 100, height: 100 }}>
+        <TextInput
+          placeholder="Escribe algo"
+        />
       </View>
-      <Text style={styles.baseText}>
+      <Text style={isDarkMode ? styles.baseTextOscuro : styles.baseTextClaro}>
         Bienvenido a la aplicacion de React Native
       </Text>
-      <Link href="./detalles" asChild>
-        <TouchableOpacity
-          style={{ backgroundColor: 'green', padding: 10, marginTop: 10 }}
+      <View style={{ flexDirection: 'row', marginTop: 10 }}>
+        <Link href="./detalles" asChild>
+          <TouchableOpacity
+            style={{ backgroundColor: 'green', padding: 10, marginTop: 10 }}
+          >
+            <Text style={{ color: 'white' }}>Presioname</Text>
+          </TouchableOpacity>
+        </Link>
+        <Pressable
+          onPress={() => setIsDarkMode(!isDarkMode)}
+          onPressIn={() => console.log('Boton presionado!')}
+          onPressOut={() => console.log('Boton soltado!')}
+          onLongPress={() => console.log('Boton presionado por mucho tiempo!')}
+          style={{ backgroundColor: 'blue', padding: 10, marginTop: 10 }}
         >
-          <Text style={{ color: 'white' }}>Presioname</Text>
-        </TouchableOpacity>
-      </Link>
-
-      <Pressable
-        onPressIn={() => console.log('Boton presionado!')}
-        onPressOut={() => console.log('Boton soltado!')}
-        onLongPress={() => console.log('Boton presionado por mucho tiempo!')}
-        style={{ backgroundColor: 'blue', padding: 10, marginTop: 10 }}
-      >
-        <Text style={{ color: 'white' }}>Presioname</Text>
-      </Pressable>
+          <Text style={isDarkMode ? styles.buttonTextOscuro : styles.buttonTextClaro} >
+            {isDarkMode ? 'Modo Claro' : 'Modo Oscuro'}
+          </Text>
+        </Pressable>
+      </View>
       <Image
         source={{
           uri: 'https://cdn-icons-png.flaticon.com/512/5968/5968292.png',
         }}
-        style={{ width: 200, height: 200 }}
+        style={{ width: 20, height: 20 }}
       />
-      <Text style={styles.baseText}>
+      <Text style={isDarkMode ? styles.baseTextOscuro : styles.baseTextClaro}>
         El codigo es responsivo
       </Text>
       <StatusBar style="auto" />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#56070c',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  baseText: {
-    color: 'white',
-    fontSize: 20,
-    marginTop: 5,
-  },
-  titleText: {
-    color: 'white',
-    fontSize: 30,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
-});
