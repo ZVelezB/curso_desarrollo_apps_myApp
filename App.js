@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, Button, Pressable, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, Pressable, TouchableOpacity } from 'react-native';
 import { Link } from 'expo-router';
 
 export default function App() {
@@ -13,10 +13,6 @@ export default function App() {
       <Text style={styles.baseText}>
         Bienvenido a la aplicacion de React Native
       </Text>
-      <Button
-        title="Presioname"
-        onPress={() => alert('Boton presionado!')}
-      />
       <Link href="./detalles" asChild>
         <TouchableOpacity
           style={{ backgroundColor: 'green', padding: 10, marginTop: 10 }}
